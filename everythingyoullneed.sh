@@ -1,4 +1,5 @@
 #!/bin/bash
+# the name of this file is a lie
 
 install_nvim () {
 	git clone https://github.com/neovim/neovim
