@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+# could be something diffrent from `ta` and specify some paths in config like bmaas to include their subdirs and then it would be prefixed with bmaas_vcloudms
+additional_dirs="/tmp/tmux-additional-dirs"
+
+if [[ $# -eq 1 ]]; then
+  selected=$1
+else
+  selected=$({ 
+    find ~/code -mindepth 1 -maxdepth 1 -type d;
+    echo "/home/p/.config/nvim";
+    echo "/home/p/code";
+    cat "$additional_dirs"
+    echo "/home/p/code/turbobimaz/bmvcapp/src/main/webapp"
+  } | fzf)
+fi
+
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
+echo "$selected" > "/tmp/tmux-sessionizer-selected"
+selected_name=$(basename "$selected" | tr . _)
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+  tmux new-session -ds $selected_name -c $selected 
+
+  tmux set-environment -t $selected_name TMUX_PWD $selected
+
+  if [[ -f $HOME/code/.config/$selected_name/on_create.sh ]]; then
+    $HOME/code/.config/$selected_name/on_create.sh $selected_name $selected
+  fi
+fi
+
+if [[ -z $TMUX ]]; then
+  tmux attach
+  exit 0
+fi
+
+tmux switch-client -t $selected_name

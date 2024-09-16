@@ -1,0 +1,31 @@
+#!/bin/bash
+
+dir=$(get-tmux-selected-dir)
+output_file="/tmp/tmux-additional-dirs"
+config_dir="/home/p/code/.config"
+
+if [[ $# -eq 0 ]]; then
+  excluded_dirs=("node_modules" ".git" ".vscode" "target" "bin" "dist")
+
+  find "$dir" -mindepth 1 -maxdepth 1 -type d \
+    ! \( -name "${excluded_dirs[0]}" $(printf -- '-o -name %s ' "${excluded_dirs[@]:1}") \) \
+    -exec echo {} \; > "$output_file"
+fi
+
+add_config() {
+  local project_config="$config_dir/$(basename "$dir")"
+  mkdir "$project_config" 2> /dev/null
+
+  case "$1" in
+    o|open)
+      tmux-sessionizer "$project_config"
+      ;;
+  esac
+}
+
+case "$1" in
+  c|config)
+    shift
+    add_config "$@"
+    ;;
+esac

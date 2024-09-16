@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd "$(tmux show-environment TMUX_PWD | cut -d = -f 2)"
