@@ -213,6 +213,9 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- recommended for https://github.com/yetone/avante.nvim/
+vim.opt.laststatus = 3
+
 -- Set highlight on search
 vim.o.hlsearch = false
 vim.o.incsearch = true
@@ -343,17 +346,17 @@ vim.keymap.set('n', '<leader>sc', require('telescope').extensions.flutter.comman
 
 -- Configure filetypes
 vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({ extension = { drift = "sql" } })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'css', 'markdown', 'templ' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'bash', 'astro', 'css', 'markdown', 'templ', 'ocaml' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
-
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
@@ -475,12 +478,13 @@ local servers = {
   gopls = {},
   -- rust_analyzer = {},
   pyright = {},
-  tsserver = {},
+  ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs', 'templ' } },
-  emmet_ls = { filetypes = { "templ", "html" } },
+  emmet_ls = { filetypes = { "templ", "html", "php" } },
   htmx = { filetypes = { "templ" } },
   templ = {},
   astro = {},
+  ocamllsp = {},
   tailwindcss = {
     filetypes = { "templ" },
     init_options = { userLanguages = { templ = "html" } },
@@ -568,7 +572,7 @@ require('flutter-tools').setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
-      analysisExcludedFolders = { "/usr/local/flutter" },
+      analysisExcludedFolders = { "/usr/local/flutter", "/home/p/.pub-cache" },
     }
   },
   dev_log = {
