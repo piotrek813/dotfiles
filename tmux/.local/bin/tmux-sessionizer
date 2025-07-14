@@ -10,8 +10,8 @@ else
     find ~/code -mindepth 1 -maxdepth 1 -type d;
     echo "/home/p/.config/nvim";
     echo "/home/p/code";
+    echo "/home/p/.config/hypr";
     cat "$additional_dirs"
-    echo "/home/p/code/turbobimaz/bmvcapp/src/main/webapp"
   } | fzf)
 fi
 

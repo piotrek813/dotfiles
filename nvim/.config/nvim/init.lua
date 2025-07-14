@@ -484,7 +484,6 @@ local servers = {
   htmx = { filetypes = { "templ" } },
   templ = {},
   astro = {},
-  ocamllsp = {},
   tailwindcss = {
     filetypes = { "templ" },
     init_options = { userLanguages = { templ = "html" } },

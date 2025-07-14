@@ -76,8 +76,8 @@ export PATH="$PLATFORM_TOOLS_INSTALL:$PATH"
 
 eval $(thefuck --alias)
 
-# bash completion
-source <(cat /home/p/.local/share/bash-completion/*)
+# # bash completion
+# source <(cat /home/p/.local/share/bash-completion/*)
 
 export FLYCTL_INSTALL="/home/p/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
@@ -91,16 +91,6 @@ export PATH="$HOME/.config/jebudu/scripts:$PATH"
 # Turso
 export PATH="$PATH:/home/p/.turso"
 
-##!/bin/bash
-
-# Tórbo Bimaz 3000
-alias bim=bim.sh
-
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 eval "$(zoxide init zsh --cmd cd)"
-eval "$(jebudu init zsh)"
