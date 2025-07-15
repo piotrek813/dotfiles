@@ -77,6 +77,8 @@ vim.o.confirm = true
 vim.o.hlsearch = false
 vim.o.incsearch = true
 
+vim.keymap.set("n", "<C-w>o", ":tab split<CR>")
+
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Diagnostic keymaps
