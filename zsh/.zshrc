@@ -32,6 +32,8 @@ alias gsh="git stash"
 alias so='source ~/.zshrc'
 alias s='cd ~/.local/bin'
 
+alias lg="lazygit"
+
 alias zshrc='nvim ~/.zshrc'
 alias vi='nvim'
 alias c='cd ~/code/'
