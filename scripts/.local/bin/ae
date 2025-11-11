@@ -6,10 +6,11 @@ else
 	selected="$1"
 fi
 
+export QT_QPA_PLATFORM=xcb
 emulator -avd "$selected" > /dev/null 2>&1 &
 
-sleep 3
+# sleep 3
 
-wmctrl -r "Android Emulator" -b add,above
-wmctrl -r "Android Emulator" -e 0,1500,180,-1,-1
+# wmctrl -r "Android Emulator" -b add,above
+# wmctrl -r "Android Emulator" -e 0,1500,180,-1,-1
 

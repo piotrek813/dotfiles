@@ -18,6 +18,10 @@ bindkey -s '^f' 'tmux-sessionizer\n'
 alias a='tmux attach'
 alias cds="source tmux-dir-changer"
 
+function open() {
+	xdg-open "$@" & 2>/dev/null
+}
+
 # git aliases
 alias gs="git status"
 alias gl="git log --oneline"
