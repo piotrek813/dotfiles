@@ -80,10 +80,14 @@ export PATH="$EMULATOR_INSTALL:$PATH"
 export PLATFORM_TOOLS_INSTALL="/home/p/Android/Sdk/platform-tools"
 export PATH="$PLATFORM_TOOLS_INSTALL:$PATH"
 
+# Platform-tools
+export CARGO_BIN="/home/p/.cargo/bin"
+export PATH="$CARGO_BIN:$PATH"
+
 eval $(thefuck --alias)
 
-# # bash completion
-# source <(cat /home/p/.local/share/bash-completion/*)
+# bash completion
+source <(cat /home/p/.local/share/bash-completion/*)
 
 export FLYCTL_INSTALL="/home/p/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
