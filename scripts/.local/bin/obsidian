@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+sync() (
+	notify-send "Obsidian sync in progress"
+	cd ~/Documents/obsidian---private
+
+	if [[ -z "$(git status -s)" ]]; then
+		notify-send "Noting to commit"
+		exit
+	fi
+
+	git add . && \
+	git commit --all --message="sync $(date --utc +%Y-%m-%dT%H:%M:%S%Z)" && \
+	git pull && \
+	git push
+
+	if [[ "$?" != "0" ]]; then
+		notify-send "Obsidian sync failed" "Check the logs for more information"
+		exit
+	fi
+
+	notify-send "Obsidian sync finished"
+)
+
+dupa () {
+	trap 'sync' EXIT
+	obsidian -disable-gui
+}
+
+dupa >>/tmp/tmp-obsidian-sync-on-close 2>&1 &
+

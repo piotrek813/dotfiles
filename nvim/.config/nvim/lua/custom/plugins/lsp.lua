@@ -167,6 +167,8 @@ return {
 			--  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+			local php = require("custom.plugins.lsp.php")
+
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 			--
@@ -192,6 +194,7 @@ return {
 					init_options = { userLanguages = { templ = "html" } },
 				},
 				mdx_analyzer = {},
+				intelephense = php,
 				lua_ls = {
 					settings = {
 						Lua = {

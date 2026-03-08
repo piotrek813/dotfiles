@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd ~/dotfiles
+
+case "$1" in
+	u|update) 
+		message="${2-update}"
+		git add .
+		git commit -m "$message"
+		git push
+	;;
+	*) lazygit
+	;;
+esac
+

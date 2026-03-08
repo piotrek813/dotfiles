@@ -11,15 +11,13 @@ export EDITOR="nvim"
 export PATH="$PATH:/home/p/.local/bin"
 export PATH="$PATH:/usr/local"
 
-alias cat="bat"
-
 # tmux
 bindkey -s '^f' 'tmux-sessionizer\n'
 alias a='tmux attach'
 alias cds="source tmux-dir-changer"
 
 function open() {
-	xdg-open "$@" & 2>/dev/null
+	xdg-open "$@" >/dev/null 2>&1 &
 }
 
 # git aliases
@@ -37,6 +35,7 @@ alias so='source ~/.zshrc'
 alias s='cd ~/.local/bin'
 
 alias lg="lazygit"
+alias lzd="lazydocker"
 
 alias zshrc='nvim ~/.zshrc'
 alias vi='nvim'
@@ -103,4 +102,7 @@ export PATH="$PATH:/home/p/.turso"
 
 source <(fzf --zsh)
 
-eval "$(zoxide init zsh --cmd cd)"
+eval "$(zoxide init zsh --cmd z)"
+
+# opencode
+export PATH=/home/p/.opencode/bin:$PATH
